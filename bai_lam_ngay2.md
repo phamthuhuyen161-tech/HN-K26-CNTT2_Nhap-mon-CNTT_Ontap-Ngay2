@@ -17,6 +17,7 @@ get-content logs/error_report.txt
 ### 2 dòng lỗi đầu tiên trong error_report.txt
 
 2025-10-18 08:17:59 [ERROR] Khong tim thay trang /lich-thi (404)
+
 2025-10-18 08:25:55 [ERROR] Het thoi gian cho (timeout)
 
 ## Bài 2. Đếm bằng pipeline
@@ -30,6 +31,7 @@ get-content logs/access.log | select-string "ERROR" | Measure-object
 ### Kết quả đếm (Windows: giá trị Count; macOS: con số in ra)
 
 WARNING trong access.log:4
+
 ERROR trong payment.log:6
 
 ## Bài 3. Chạy script auto_warning (.ps1 hoặc .sh)
@@ -40,9 +42,13 @@ ERROR trong payment.log:6
 ### Nội dung file logs/warning_report.txt
 
 2025-10-18 09:19:13 [WARNING] Cong thanh toan phan hoi cham
+
 2025-10-18 09:28:16 [WARNING] Nhieu lan nhap sai ma OTP
+
 2025-10-18 09:43:01 [WARNING] So du vi gan bang hoc phi
+
 2025-10-18 09:46:22 [WARNING] So du vi gan bang hoc phi
+
 2025-10-18 09:49:43 [WARNING] So du vi gan bang hoc phi
 
 
@@ -51,7 +57,9 @@ ERROR trong payment.log:6
 ### Các lệnh đã chạy
 
 "=== TONG HOP ACCESS LOG ===" > logs/tong_hop_ngay2.txt
+
 get-content logs/access.log | select-string "ERROR" logs/tong_hop_ngay2.txt 
+
 (get-content logs/payment.log | select-string "WARNING" | Measure-object).count >> logs/tong_hop_ngay2.txt 
 
 ### Nội dung file logs/tong_hop_ngay2.txt
