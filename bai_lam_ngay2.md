@@ -9,20 +9,22 @@
 
 ### Lệnh đã chạy
 
-get-content logs/access.log | select-string "ERROR" | out-file logs/error_report.txt
+get-content logs/access.log | select-string "ERROR" > logs/error_report.txt
+get-content logs/error_report.txt
 
 
 ### 2 dòng lỗi đầu tiên trong error_report.txt
 
 2025-10-18 08:17:59 [ERROR] Khong tim thay trang /lich-thi (404)
+2025-10-18 08:25:55 [ERROR] Het thoi gian cho (timeout)
 
 ## Bài 2. Đếm bằng pipeline
 
 ### Lệnh
 
-(get-content logs/access.log | select-string "WARNING").count
+get-content logs/access.log | select-string "WARNING" | Measure-object
 
-(get-content logs/access.log | select-string "ERROR").count
+get-content logs/access.log | select-string "ERROR" | Measure-object
 
 ### Kết quả đếm (Windows: giá trị Count; macOS: con số in ra)
 
@@ -47,15 +49,22 @@ ERROR trong payment.log:6
 
 ### Các lệnh đã chạy
 
-"=== TONG HOP ACCESS LOG ==="| out-file logs/tong_hop_ngay2.txt
-(get-content logs/access.log | select-string "ERROR").count | out-file logs/tong_hop_ngay2.txt -append
-(get-content logs/access.log | select-string "WARNING").count | out-file logs/tong_hop_ngay2.txt -append
+"=== TONG HOP ACCESS LOG ===" > logs/tong_hop_ngay2.txt
+get-content logs/access.log | select-string "ERROR" logs/tong_hop_ngay2.txt 
+(get-content logs/payment.log | select-string "WARNING" | Measure-object).count >> logs/tong_hop_ngay2.txt 
 
 ### Nội dung file logs/tong_hop_ngay2.txt
 
 === TONG HOP ACCESS LOG ===
-6
-4
+
+2025-10-18 08:17:59 [ERROR] Khong tim thay trang /lich-thi (404)
+2025-10-18 08:25:55 [ERROR] Het thoi gian cho (timeout)
+2025-10-18 08:33:51 [ERROR] Ket noi may chu du lieu that bai
+2025-10-18 08:37:19 [ERROR] Ket noi may chu du lieu that bai
+2025-10-18 08:49:43 [ERROR] Het thoi gian cho (timeout)
+2025-10-18 08:53:11 [ERROR] Het thoi gian cho (timeout) 
+
+5
 
 
 ## Bài 5. Câu hỏi ngắn
