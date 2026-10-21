@@ -67,10 +67,15 @@ get-content logs/access.log | select-string "ERROR" logs/tong_hop_ngay2.txt
 === TONG HOP ACCESS LOG ===
 
 2025-10-18 08:17:59 [ERROR] Khong tim thay trang /lich-thi (404)
+
 2025-10-18 08:25:55 [ERROR] Het thoi gian cho (timeout)
+
 2025-10-18 08:33:51 [ERROR] Ket noi may chu du lieu that bai
+
 2025-10-18 08:37:19 [ERROR] Ket noi may chu du lieu that bai
+
 2025-10-18 08:49:43 [ERROR] Het thoi gian cho (timeout)
+
 2025-10-18 08:53:11 [ERROR] Het thoi gian cho (timeout) 
 
 5
