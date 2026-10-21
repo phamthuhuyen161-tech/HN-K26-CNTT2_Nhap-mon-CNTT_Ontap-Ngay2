@@ -21,12 +21,12 @@ get-content logs/error_report.txt
 ### Lệnh
 ```shell
 get-content logs/access.log | select-string "WARNING" | Measure-object
-get-content logs/access.log | select-string "ERROR" | Measure-object
+get-content logs/payment.log | select-string "ERROR" | Measure-object
 ```
 ### Kết quả đếm (Windows: giá trị Count; macOS: con số in ra)
 ```text
 WARNING trong access.log:4
-ERROR trong payment.log:6
+ERROR trong payment.log:3
 ```
 ## Bài 3. Chạy script auto_warning (.ps1 hoặc .sh)
 ```shell
