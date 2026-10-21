@@ -10,6 +10,7 @@
 ### Lệnh đã chạy
 
 get-content logs/access.log | select-string "ERROR" > logs/error_report.txt
+
 get-content logs/error_report.txt
 
 
